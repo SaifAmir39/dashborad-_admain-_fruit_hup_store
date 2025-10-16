@@ -1,4 +1,5 @@
 import 'package:dash_bord_fruite_hup/core/utils/app_text_styles.dart';
+import 'package:dash_bord_fruite_hup/features/add%20product/presantions/manger/addproducts/addproducts_cubit.dart';
 import 'package:dash_bord_fruite_hup/features/add%20product/presantions/manger/image%20_picker/imagepicker_cubit.dart';
 import 'package:dash_bord_fruite_hup/features/add%20product/presantions/views/widgets/add_product_body.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +9,12 @@ class AddproductsViwe extends StatelessWidget {
   static const String routeName = "addproductsViwe";
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ImagepickerCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ImagepickerCubit>(create: (context) => ImagepickerCubit()),
+        BlocProvider<AddproductsCubit>(create: (context) => AddproductsCubit()),
+      ],
+      
       child: Scaffold(
         appBar: AppBar(
           title: Text(
@@ -20,7 +25,6 @@ class AddproductsViwe extends StatelessWidget {
         ),
         body: SafeArea(child: AddProductBody()),
       ),
-
     );
   }
 }

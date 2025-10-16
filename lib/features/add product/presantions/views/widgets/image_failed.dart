@@ -6,7 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:io';
 
 class ImageFailed extends StatelessWidget {
+   final ValueChanged<File?>onfilechsnges;
 
+  const ImageFailed({super.key, required this.onfilechsnges});
   @override
   Widget build(BuildContext context) {
     return DottedBorder(
@@ -29,7 +31,16 @@ class ImageFailed extends StatelessWidget {
           ),
           width: double.infinity,
           child: Center(
-            child: BlocBuilder<ImagepickerCubit, ImagepickerState>(
+            child: BlocConsumer<ImagepickerCubit, ImagepickerState>(
+              listener: (context, state){
+
+                if(state is Imagepickersucess){
+
+              onfilechsnges(File(state.imagepicked!.path));
+
+                }
+
+              },
               builder: (context, state) {
                 
         

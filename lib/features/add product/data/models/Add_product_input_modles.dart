@@ -41,7 +41,6 @@ class AddProductInputModles   {
      "name":name,
      "price":price,
      "description":description,
-     "image":image,
      "code":code,
      "isFeatured":isFeatured,
      "imageURL":imageURL,
