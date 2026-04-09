@@ -166,7 +166,7 @@ class _AddProductBodyState extends State<AddProductBody> {
   numberofcaliores: int.tryParse(textEditingControllernumberOfCalories.text) ?? 0,
   unitaMount: int.tryParse(textEditingControllerunitAmount.text) ?? 0,
   expirationsMountes: int.tryParse(textEditingControllerexpirationMountes.text) ?? 0,
-  isOrganic: isOrganic,
+  isOrganic: isOrganic, reviews: [],
 );
 
                             BlocProvider.of<AddproductsCubit>(

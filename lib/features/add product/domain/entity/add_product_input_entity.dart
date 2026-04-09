@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:dash_bord_fruite_hup/features/add%20product/domain/entity/review_entity.dart';
+
 class Addproductinputentity {
   String name;
   String price;
@@ -12,6 +14,7 @@ class Addproductinputentity {
    int numberofcaliores;
    int unitaMount;
    int expirationsMountes;
+   List<ReviewEntity> reviews;
 
   Addproductinputentity({
 
@@ -27,7 +30,7 @@ class Addproductinputentity {
     required this.isOrganic,
     
    this.imageURL,
-   
+   required this.reviews,
   });
   
 }

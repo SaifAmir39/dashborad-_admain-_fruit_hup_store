@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
 
+import 'package:dash_bord_fruite_hup/features/add%20product/data/models/review_modle.dart';
 import 'package:dash_bord_fruite_hup/features/add%20product/domain/entity/add_product_input_entity.dart';
 
 class AddProductInputModles {
@@ -15,6 +16,7 @@ class AddProductInputModles {
   int numberofcaliores;
   int unitaMount;
   int expirationsMountes;
+    List<ReviewModle> reviews;
   AddProductInputModles({
     required this.name,
     required this.price,
@@ -27,6 +29,7 @@ class AddProductInputModles {
     required this.unitaMount,
     required this.expirationsMountes,
     required this.isOrganic,
+    required this.reviews,
   });
   factory AddProductInputModles.fromentity(
     Addproductinputentity addproductinputentity,
@@ -42,7 +45,7 @@ class AddProductInputModles {
       numberofcaliores: addproductinputentity.numberofcaliores,
       unitaMount: addproductinputentity.unitaMount,
       expirationsMountes: addproductinputentity.expirationsMountes,
-      isOrganic: addproductinputentity.isOrganic,
+      isOrganic: addproductinputentity.isOrganic, reviews: addproductinputentity.reviews.map((e) => ReviewModle.fromEntity(e)).toList(),
     );
   }
 
@@ -58,6 +61,7 @@ class AddProductInputModles {
       "unitaMount": unitaMount,
       "expirationsMountes": expirationsMountes,
       "isOrganic": isOrganic,
+      "reviews": reviews.map((e) => e.toMap()).toList(),
     };
   }
 }
