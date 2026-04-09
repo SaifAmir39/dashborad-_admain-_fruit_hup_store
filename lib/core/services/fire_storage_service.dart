@@ -13,9 +13,9 @@ final storageRef = FirebaseStorage.instance.ref();
 
    await  imagesref.putFile(file);
     
-    var imageurl = imagesref.getDownloadURL();
+    var imageurl = await imagesref.getDownloadURL();
 
-    return imageurl.toString();
+    return imageurl;
    
 
   }
