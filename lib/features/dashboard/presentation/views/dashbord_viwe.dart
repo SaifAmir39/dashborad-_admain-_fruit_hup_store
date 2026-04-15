@@ -6,11 +6,24 @@ class DashbordViwe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: Padding(
+//       appBar: AppBar(
+//         backgroundColor: const Color(0xFF1B5E37),
+//         title: Text(
+//   'Dashboard Admin',
+//   textAlign: TextAlign.center,
+//   style: TextStyle(
+//     color: Colors.white,
+//     fontSize: 24,
+  
+//     fontWeight: FontWeight.w700,
+//   ),
+// ),
+//         centerTitle: true,
+//       ),
+      body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: DashboedBody(),
       ),
-    ),
     );
   }
 }

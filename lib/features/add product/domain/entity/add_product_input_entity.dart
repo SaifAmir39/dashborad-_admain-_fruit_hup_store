@@ -4,7 +4,7 @@ import 'package:dash_bord_fruite_hup/features/add%20product/domain/entity/review
 
 class Addproductinputentity {
   String name;
-  String price;
+  double price;
   String description;
   File image;
   String code;

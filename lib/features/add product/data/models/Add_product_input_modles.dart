@@ -6,7 +6,7 @@ import 'package:dash_bord_fruite_hup/features/add%20product/domain/entity/add_pr
 
 class AddProductInputModles {
   String name;
-  String price;
+  double price;
   String description;
   File image;
   String code;
@@ -16,7 +16,8 @@ class AddProductInputModles {
   int numberofcaliores;
   int unitaMount;
   int expirationsMountes;
-    List<ReviewModle> reviews;
+  List<ReviewModle> reviews;
+  int saleingcount=0;
   AddProductInputModles({
     required this.name,
     required this.price,
@@ -30,6 +31,7 @@ class AddProductInputModles {
     required this.expirationsMountes,
     required this.isOrganic,
     required this.reviews,
+    this.saleingcount=0,
   });
   factory AddProductInputModles.fromentity(
     Addproductinputentity addproductinputentity,
@@ -62,6 +64,7 @@ class AddProductInputModles {
       "expirationsMountes": expirationsMountes,
       "isOrganic": isOrganic,
       "reviews": reviews.map((e) => e.toMap()).toList(),
+      "saleingcount": saleingcount,
     };
   }
 }
