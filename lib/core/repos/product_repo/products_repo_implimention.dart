@@ -10,7 +10,7 @@ class ProductsRepoImplimention implements ProductsRepo {
 
   ProductsRepoImplimention({required this.databaseService});
   @override
-  Future<Either<failer,void>> addproducts(Addproductinputentity addproductinputentity)async {
+  Future<Either<failer,void>> addproducts(Productentity addproductinputentity)async {
    try{
 
      await databaseService.AddData(path: "Products",

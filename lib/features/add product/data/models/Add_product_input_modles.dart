@@ -34,7 +34,7 @@ class AddProductInputModles {
     this.saleingcount=0,
   });
   factory AddProductInputModles.fromentity(
-    Addproductinputentity addproductinputentity,
+    Productentity addproductinputentity,
   ) {
     return AddProductInputModles(
       name: addproductinputentity.name,

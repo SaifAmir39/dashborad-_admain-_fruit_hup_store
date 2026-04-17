@@ -5,6 +5,8 @@ import 'package:dash_bord_fruite_hup/core/repos/product_repo/products_repo_impli
 import 'package:dash_bord_fruite_hup/core/services/Database_service.dart';
 import 'package:dash_bord_fruite_hup/core/services/fire_storage_service.dart';
 import 'package:dash_bord_fruite_hup/core/services/firebase_firestoresevice.dart';
+import 'package:dash_bord_fruite_hup/features/orders/data/repo/order_repo_implementiom.dart';
+import 'package:dash_bord_fruite_hup/features/orders/domain/repo/order_repo.dart';
 import 'package:get_it/get_it.dart';
 final getIt = GetIt.instance;
 
@@ -22,6 +24,8 @@ getIt.registerSingleton<ProductsRepo>(
 ProductsRepoImplimention(databaseService:getIt.get<DatabaseService>(),
 ),
 );
+getIt.registerSingleton<OrderRepo>(OrderRepoImplementiom(databaseService: getIt<DatabaseService>()));
+
 
  
 }

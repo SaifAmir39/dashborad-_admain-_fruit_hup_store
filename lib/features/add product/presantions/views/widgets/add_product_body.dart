@@ -156,7 +156,7 @@ class _AddProductBodyState extends State<AddProductBody> {
                         onpressed: () {
                           if (formkey.currentState!.validate()) {
                             formkey.currentState!.save();
-                            Addproductinputentity input = Addproductinputentity(
+                            Productentity input = Productentity(
   name: textEditingControllername.text,
   price: double.tryParse(textEditingControllerprice.text) ?? 0.0,
   description: textEditingControllerdescription.text,

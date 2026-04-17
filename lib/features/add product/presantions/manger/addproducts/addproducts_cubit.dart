@@ -9,7 +9,7 @@ part 'addproducts_state.dart';
 
 class AddproductsCubit extends Cubit<AddproductsState> {
   AddproductsCubit() : super(AddproductsInitial());
-  Future<void> Addproduct(Addproductinputentity addproductinputentity) async {
+  Future<void> Addproduct(Productentity addproductinputentity) async {
     emit(AddproductsLoading());
 
     var reslut = await ImageRepoImplemention(

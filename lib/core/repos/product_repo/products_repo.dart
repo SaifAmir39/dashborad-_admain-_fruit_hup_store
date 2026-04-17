@@ -3,7 +3,7 @@ import 'package:dash_bord_fruite_hup/features/add%20product/domain/entity/add_pr
 abstract class ProductsRepo {
 
 
-Future<void>addproducts(Addproductinputentity addproductinputentity);
+Future<void>addproducts(Productentity addproductinputentity);
 
 
 

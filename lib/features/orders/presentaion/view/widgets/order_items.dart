@@ -1,8 +1,19 @@
+import 'package:dash_bord_fruite_hup/features/orders/domain/entitis/order_entiti.dart';
 import 'package:dash_bord_fruite_hup/features/orders/presentaion/view/widgets/product_item.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class OrderItems extends StatelessWidget {
+ final OrderEntiti orderEntiti;
+  OrderItems({Key? key,required this.orderEntiti}) : super(key: key);
+  
+  getpymentmathoud(){
+    if(orderEntiti.ispymentmethod==0){
+      return "Cash";
+    }
+    else{
+      return "Card";
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return  Container(
@@ -27,27 +38,27 @@ class OrderItems extends StatelessWidget {
     children: [
       Text("Total Pricer :",style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w700),),
      SizedBox(height: 8,),
-     Text("User ID :",style: TextStyle(color: Colors.grey,fontSize: 16,fontWeight: FontWeight.w400),),
+     Text("User ID :${orderEntiti.uiID}",style: TextStyle(color: Colors.grey,fontSize: 16,fontWeight: FontWeight.w400),),
      SizedBox(height: 8,),
-      Text("Shapping Address :",style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w700),),
+      Text("Shapping Address:",style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w700),),
      SizedBox(height: 8,),
      Row(
       children: [
         Icon(Icons.location_on_outlined, color: Colors.black, size: 30,),
-        Text("Shapping Address",style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w400),),
+        Text("Shapping Address : ${orderEntiti.addressEntiti!.address}",style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w400),),
       ],
      ),
      
      SizedBox(
        height: 16,
      ),
-     Text("Payment Mathod :",style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w700),),
+     Text("Payment Mathod}",style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w700),),
     SizedBox(height: 8,),
     Row(
       children: [
         Icon(Icons.payment, color: Colors.black, size: 30,),
         SizedBox(width: 16,),
-        Text("Payment Mathod",style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w400),),
+        Text("Payment Mathod : ${getpymentmathoud()}",style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w400),),
       ],
     ),
 
@@ -82,8 +93,8 @@ class OrderItems extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context,index){
       
-      return ProductItem();
-    },itemCount: 5,),
+      return ProductItem(product: orderEntiti.orderItems![index],);
+    },itemCount: orderEntiti.orderItems!.length,),
     
     ],
 

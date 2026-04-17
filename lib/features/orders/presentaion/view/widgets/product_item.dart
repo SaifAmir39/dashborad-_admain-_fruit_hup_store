@@ -1,6 +1,11 @@
+import 'package:dash_bord_fruite_hup/features/orders/data/models/order_productes_modle.dart';
+import 'package:dash_bord_fruite_hup/features/orders/domain/entitis/order_productes_entiti.dart';
 import 'package:flutter/material.dart';
 
 class ProductItem extends StatelessWidget {
+  final OrderProductesEntiti product;
+
+  ProductItem({required this.product});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,13 +21,16 @@ class ProductItem extends StatelessWidget {
           // Product Image
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
-            child: Image.asset(
-              "assets/images/watermelon_test.png",
+            child: Image.network(
+              "${product.image}",
               width: 80,
               height: 80,
               fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.error),
             ),
           ),
+          
+
           const SizedBox(width: 12),
 
           // Product Info
@@ -32,7 +40,7 @@ class ProductItem extends StatelessWidget {
               children: [
                 // Product Name
                 Text(
-                  'Product Name',
+                  '${product.name}',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16,
@@ -46,7 +54,7 @@ class ProductItem extends StatelessWidget {
                   children: [
                     Icon(Icons.attach_money, size: 16, color: Colors.green),
                     Text(
-                      'Product Price',
+                      '${product.price}',
                       style: TextStyle(
                         color: Colors.green,
                         fontSize: 14,
@@ -58,7 +66,7 @@ class ProductItem extends StatelessWidget {
                         size: 16, color: Colors.grey),
                     const SizedBox(width: 4),
                     Text(
-                      'Qty: 3',
+                      '${product.quantity}',
                       style: TextStyle(
                         color: Colors.grey[700],
                         fontSize: 14,
@@ -81,10 +89,10 @@ class ProductItem extends StatelessWidget {
               border: Border.all(color: Colors.green, width: 1),
             ),
             child: Text(
-              'Active',
+              'Code: ${product.code}',
               style: TextStyle(
                 color: Colors.green,
-                fontSize: 12,
+                fontSize: 18,
                 fontWeight: FontWeight.w700,
               ),
             ),
