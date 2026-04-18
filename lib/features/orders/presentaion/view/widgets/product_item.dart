@@ -3,14 +3,11 @@ import 'package:flutter/material.dart';
 
 class ProductItem extends StatelessWidget {
   final OrderProductesEntiti product;
-  final VoidCallback? onAccept;
-  final VoidCallback? onRefuse;
-
+ 
   const ProductItem({
     super.key,
     required this.product,
-    this.onAccept,
-    this.onRefuse,
+    
   });
 
   @override
@@ -34,7 +31,7 @@ class ProductItem extends StatelessWidget {
         children: [
           _buildTopSection(),
           _buildDivider(),
-          _buildActionButtons(),
+        
         ],
       ),
     );
@@ -203,67 +200,7 @@ class ProductItem extends StatelessWidget {
   }
 
   // ── أزرار Accept و Refuse ──
-  Widget _buildActionButtons() {
-    return Padding(
-      padding: const EdgeInsets.all(12),
-      child: Row(
-        children: [
-          Expanded(
-            child: _buildActionBtn(
-              label: 'Accept',
-              icon: Icons.check_circle_outline_rounded,
-              color: const Color(0xFF2E7D32),
-              bgColor: const Color(0xFFE8F5E9),
-              onTap: onAccept ?? () {},
-            ),
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: _buildActionBtn(
-              label: 'Refuse',
-              icon: Icons.cancel_outlined,
-              color: const Color(0xFFC62828),
-              bgColor: const Color(0xFFFFEBEE),
-              onTap: onRefuse ?? () {},
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  
 
-  Widget _buildActionBtn({
-    required String label,
-    required IconData icon,
-    required Color color,
-    required Color bgColor,
-    required VoidCallback onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 11),
-        decoration: BoxDecoration(
-          color: bgColor,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: color.withOpacity(0.3)),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, size: 18, color: color),
-            const SizedBox(width: 6),
-            Text(
-              label,
-              style: TextStyle(
-                color: color,
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  
 }

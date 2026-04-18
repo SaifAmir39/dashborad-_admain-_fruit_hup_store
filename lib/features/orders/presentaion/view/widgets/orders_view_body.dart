@@ -43,7 +43,25 @@ class _OrdersViewBodyState extends State<OrdersViewBody> {
             );
           }
           if (state is OrderSuccess) {
-            return CustomScrollView(
+            return state.orders.isEmpty ? Center(child: 
+            
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.note_alt_outlined
+                
+                , color: Colors.grey, size:80,),
+                SizedBox(height: 16,),
+                Text("No Orders",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  ),
+                
+                ),
+              ],
+            )) : CustomScrollView(
               slivers: [
                 SliverToBoxAdapter(child: SizedBox(height: 24)),
                 SliverToBoxAdapter(

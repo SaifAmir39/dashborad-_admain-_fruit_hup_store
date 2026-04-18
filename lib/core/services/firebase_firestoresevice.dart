@@ -100,4 +100,10 @@ class FirebaseFirestoresevice implements DatabaseService {
       yield snapshot.docs.map((e) => e.data()).toList();
     }
   }
+  
+  @override
+  Future<void> updateData({required String path, required Map<String, dynamic> data, required String documentid})async {
+   await firestore.collection(path).doc(documentid).update(data);
+    throw UnimplementedError();
+  }
 }
