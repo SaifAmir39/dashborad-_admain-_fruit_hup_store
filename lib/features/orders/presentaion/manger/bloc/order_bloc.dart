@@ -44,7 +44,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
   result.fold(
     (failer) => emit(OrderError(message: failer.massage)),
-    (_) {},
+    (_) => emit(UpdateOrder()),
   );
 });
  

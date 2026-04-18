@@ -6,7 +6,9 @@ import 'package:dash_bord_fruite_hup/features/orders/domain/entitis/address_enti
 import 'package:dash_bord_fruite_hup/features/orders/domain/entitis/order_entiti.dart';
 
 class OrderModel {
-String uid;
+final String id;
+final String uid;
+final String status;
 final double total;
 final ShaipingAddresModle address;
 
@@ -14,7 +16,9 @@ final List<OrderProductesModle> products;
 final int PaymentMethod;
 
 OrderModel({
+  required this.id,
   required this.uid,
+  required this.status,
   required this.total,
   required this.address,
   required this.products,
@@ -23,6 +27,8 @@ OrderModel({
 
  OrderEntiti toEntiti() {
   return OrderEntiti(
+    id: id,
+    status: status,
     uiID: uid,
     totalPrice: total,
     orderItems: products.map((e) => e.toentiti()).toList(),
@@ -33,8 +39,11 @@ OrderModel({
 
 factory OrderModel.fromjson(Map<String,dynamic>json){
 return OrderModel(
+
+  id: json["id"] ?? "",
   uid: json["uid"] ?? "",
   total: (json["total"] as num?)?.toDouble() ?? 0.0,
+  status: json["status"] ?? "",
   address: ShaipingAddresModle.fromjson(json["address"] ?? {}),
   products: (json["products"] as List?)?.map((e) => OrderProductesModle.fromjson(e)).toList() ?? [],
   PaymentMethod: json["paymentMethod"] ?? 0,
@@ -62,13 +71,14 @@ return OrderModel(
   orderEntiti.addressEntiti ?? AddressEntiti()
 ),
   products: productList,
-  PaymentMethod: orderEntiti.ispymentmethod??0,
+  PaymentMethod: orderEntiti.ispymentmethod??0, status: orderEntiti.status??"", id: orderEntiti.id??"",
 );
 
 
 }
 toJson() {
   return {
+    "status": status,
     "uid": uid,
     "total": total,
     "address": address.tojson(),

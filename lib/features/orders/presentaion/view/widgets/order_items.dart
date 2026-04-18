@@ -1,7 +1,10 @@
 import 'package:dash_bord_fruite_hup/core/utils/app_colors.dart';
+import 'package:dash_bord_fruite_hup/features/orders/data/models/order_stutes.dart';
 import 'package:dash_bord_fruite_hup/features/orders/domain/entitis/order_entiti.dart';
+import 'package:dash_bord_fruite_hup/features/orders/presentaion/manger/bloc/order_bloc.dart';
 import 'package:dash_bord_fruite_hup/features/orders/presentaion/view/widgets/product_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OrderItems extends StatelessWidget {
  final OrderEntiti orderEntiti;
@@ -63,7 +66,7 @@ class OrderItems extends StatelessWidget {
         child: Center(
           child: Text(
           
-            'panding',
+            '${orderEntiti.status}',
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.white,
@@ -142,8 +145,66 @@ class OrderItems extends StatelessWidget {
     SizedBox(
       height: 8,
     ),
-_buildActionButtons(),
-    
+
+    if(orderEntiti.status=="pending")
+_buildActionButtons(onAccept: () {
+  BlocProvider.of<OrderBloc>(context).add(UpdateOrderEvent(orderId: orderEntiti.id??"", orderState: OrderStutes.process));
+  }, onRefuse: () { 
+    BlocProvider.of<OrderBloc>(context).add(UpdateOrderEvent(orderId: orderEntiti.id??"", orderState: OrderStutes.cancel));
+   }),
+    if(orderEntiti.status=="process")
+     GestureDetector(
+       onTap: () {
+         BlocProvider.of<OrderBloc>(context).add(UpdateOrderEvent(orderId: orderEntiti.id??"", orderState: OrderStutes.delivered));
+       },
+       child: Container(
+         padding: const EdgeInsets.symmetric(vertical: 11),
+         decoration: BoxDecoration(
+           color: AppColors.lightPrimaryColor,
+           borderRadius: BorderRadius.circular(12),
+           border: Border.all(color: Colors.white.withOpacity(0.3)),
+         ),
+         child: Row(
+           mainAxisAlignment: MainAxisAlignment.center,
+           children: [
+             Icon(Icons.delivery_dining, size: 18, color: Colors.white),
+             const SizedBox(width: 6),
+             Text(
+               "mark as delivered",
+               style: TextStyle(
+                 color: Colors.white,
+                 fontSize: 14,
+                 fontWeight: FontWeight.w700,
+               ),
+             ),
+           ],
+         ),
+       ),
+     ),
+     if(orderEntiti.status=="delivered")
+     Container(
+         padding: const EdgeInsets.symmetric(vertical: 11),
+         decoration: BoxDecoration(
+           color: AppColors.lightPrimaryColor,
+           borderRadius: BorderRadius.circular(12),
+           border: Border.all(color: Colors.white.withOpacity(0.3)),
+         ),
+         child: Row(
+           mainAxisAlignment: MainAxisAlignment.center,
+           children: [
+             Icon(Icons.delivery_dining, size: 18, color: Colors.white),
+             const SizedBox(width: 6),
+             Text(
+               "Shipped",
+               style: TextStyle(
+                 color: Colors.white,
+                 fontSize: 14,
+                 fontWeight: FontWeight.w700,
+               ),
+             ),
+           ],
+         ),
+       ),
     
     ],
 
@@ -155,7 +216,8 @@ _buildActionButtons(),
    
   }
 
-  Widget _buildActionButtons() {
+  Widget _buildActionButtons({required void Function() onAccept,required void Function() onRefuse}) {
+   
     return Padding(
       padding: const EdgeInsets.all(12),
       child: Row(
@@ -166,7 +228,7 @@ _buildActionButtons(),
               icon: Icons.check_circle_outline_rounded,
               color: const Color(0xFF2E7D32),
               bgColor: const Color(0xFFE8F5E9),
-              onTap: onAccept ?? () {},
+              onTap: onAccept
             ),
           ),
           const SizedBox(width: 10),
@@ -176,7 +238,7 @@ _buildActionButtons(),
               icon: Icons.cancel_outlined,
               color: const Color(0xFFC62828),
               bgColor: const Color(0xFFFFEBEE),
-              onTap: onRefuse ?? () {},
+              onTap: onRefuse,
             ),
           ),
         ],

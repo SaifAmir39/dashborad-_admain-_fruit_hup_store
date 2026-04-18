@@ -4,7 +4,7 @@ part of 'order_bloc.dart';
 abstract class OrderEvent {}
 class GetOrderEvent extends OrderEvent {}
 class UpdateOrderEvent extends OrderEvent {
-  String orderId;
-  OrderStutes orderState;
+ final String orderId;
+ final OrderStutes orderState;
   UpdateOrderEvent({required this.orderId,required this.orderState});
 }
