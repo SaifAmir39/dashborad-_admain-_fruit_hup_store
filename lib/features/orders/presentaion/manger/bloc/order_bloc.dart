@@ -13,15 +13,20 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
   
   OrderBloc({required this.orderRepo}) : super(OrderInitial()) {(
 
-  on<GetOrderEvent>((event, emit)async {
+  on<GetOrderEvent>((event, emit)async{
    
   emit(OrderLoading());
-   var reslut = await orderRepo.getOrders();
-    reslut.fold(
+  await for(var reslut in orderRepo.getOrders()){
+       reslut.fold(
     (failer) => emit(OrderError(message: failer.massage)),
     (order) => emit(OrderSuccess(orders: order)),
   
    );
+   }
+   
+   
+  
+  
 
   })
   

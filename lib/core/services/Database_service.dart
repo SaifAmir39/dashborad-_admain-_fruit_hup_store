@@ -8,6 +8,7 @@ Future<void>AddData ( {required String path,required Map<String,dynamic>data,req
 Future<void>addData ( {required String path,required Map<String,dynamic>data});
 Future<List<Map<String,dynamic>>>getalldata({required String path});
 Future<Map<String,dynamic>> getdata({required String path,required String documentid});
+Stream<List< Map<String,dynamic>>> getStreamdata({required String path});
 Future<List<Map<String,dynamic>>> getspecificdata({
  required String path,
 

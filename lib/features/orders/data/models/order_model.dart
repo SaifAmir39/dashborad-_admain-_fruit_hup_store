@@ -24,6 +24,7 @@ OrderModel({
  OrderEntiti toEntiti() {
   return OrderEntiti(
     uiID: uid,
+    totalPrice: total,
     orderItems: products.map((e) => e.toentiti()).toList(),
     addressEntiti: address.toentites(),
     ispymentmethod: PaymentMethod,
@@ -33,7 +34,7 @@ OrderModel({
 factory OrderModel.fromjson(Map<String,dynamic>json){
 return OrderModel(
   uid: json["uid"] ?? "",
-  total: json["total"] ?? 0.0,
+  total: (json["total"] as num?)?.toDouble() ?? 0.0,
   address: ShaipingAddresModle.fromjson(json["address"] ?? {}),
   products: (json["products"] as List?)?.map((e) => OrderProductesModle.fromjson(e)).toList() ?? [],
   PaymentMethod: json["paymentMethod"] ?? 0,
@@ -44,7 +45,7 @@ factory OrderModel.fromentitis(OrderEntiti orderEntiti){
 double totalPrice = 0;
 List<OrderProductesModle> productList = [];
 if (orderEntiti.orderItems != null) {
-  totalPrice = orderEntiti.orderItems!.fold<double>(0, (sum, item) => sum + (item.price * item.quantity));
+  totalPrice = orderEntiti.orderItems!.fold<double>(0.0, (sum, item) => sum + (item.price * item.quantity));
   productList = orderEntiti.orderItems!.map((e) => OrderProductesModle(
     name: e.name ?? "",
     price: e.price,

@@ -36,16 +36,15 @@ class OrderItems extends StatelessWidget {
   child: Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text("Total Pricer :",style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w700),),
+      Text("Total Pricer :${orderEntiti.totalPrice}",style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w700),),
      SizedBox(height: 8,),
      Text("User ID :${orderEntiti.uiID}",style: TextStyle(color: Colors.grey,fontSize: 16,fontWeight: FontWeight.w400),),
      SizedBox(height: 8,),
-      Text("Shapping Address:",style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w700),),
-     SizedBox(height: 8,),
+    
      Row(
       children: [
         Icon(Icons.location_on_outlined, color: Colors.black, size: 30,),
-        Text("Shapping Address : ${orderEntiti.addressEntiti!.address}",style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w400),),
+        Text("Shapping Address :\n ${orderEntiti.addressEntiti!.address}",style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w400),),
       ],
      ),
      

@@ -5,7 +5,7 @@ import 'package:dash_bord_fruite_hup/features/orders/domain/entitis/order_entiti
 abstract class OrderRepo {
 Future<Either<failer,void>> createOrder({required OrderEntiti order});
 
-Future<Either<failer,List<OrderEntiti>>> getOrders();
+Stream<Either<failer,List<OrderEntiti>>> getOrders();
 
 
 }

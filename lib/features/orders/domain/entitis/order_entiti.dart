@@ -7,9 +7,9 @@ class OrderEntiti {
  List<OrderProductesEntiti> ?orderItems;
  int ?ispymentmethod;
  AddressEntiti? addressEntiti;
+ double ?totalPrice;
 
 
-
- OrderEntiti({required this.uiID ,this.orderItems, this.ispymentmethod, this.addressEntiti});
+ OrderEntiti({required this.uiID ,this.orderItems, this.ispymentmethod, this.addressEntiti, this.totalPrice});
  
 }
