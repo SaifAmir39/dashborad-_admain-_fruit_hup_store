@@ -1,7 +1,7 @@
 import 'package:dash_bord_fruite_hup/core/utils/app_colors.dart';
 import 'package:dash_bord_fruite_hup/features/orders/data/models/order_stutes.dart';
 import 'package:dash_bord_fruite_hup/features/orders/domain/entitis/order_entiti.dart';
-import 'package:dash_bord_fruite_hup/features/orders/presentaion/manger/bloc/order_bloc.dart';
+import 'package:dash_bord_fruite_hup/features/orders/presentaion/manger/bloc/updateorder_bloc.dart';
 import 'package:dash_bord_fruite_hup/features/orders/presentaion/view/widgets/product_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -148,14 +148,14 @@ class OrderItems extends StatelessWidget {
 
     if(orderEntiti.status=="pending")
 _buildActionButtons(onAccept: () {
-  BlocProvider.of<OrderBloc>(context).add(UpdateOrderEvent(orderId: orderEntiti.id??"", orderState: OrderStutes.process));
+  BlocProvider.of<UpdateorderBloc>(context).add(UpdateOrder(orderId: orderEntiti.id??"", orderState: OrderStutes.process));
   }, onRefuse: () { 
-    BlocProvider.of<OrderBloc>(context).add(UpdateOrderEvent(orderId: orderEntiti.id??"", orderState: OrderStutes.cancel));
+    BlocProvider.of<UpdateorderBloc>(context).add(UpdateOrder(orderId: orderEntiti.id??"", orderState: OrderStutes.cancel));
    }),
     if(orderEntiti.status=="process")
      GestureDetector(
        onTap: () {
-         BlocProvider.of<OrderBloc>(context).add(UpdateOrderEvent(orderId: orderEntiti.id??"", orderState: OrderStutes.delivered));
+         BlocProvider.of<UpdateorderBloc>(context).add(UpdateOrder(orderId: orderEntiti.id??"", orderState: OrderStutes.delivered));
        },
        child: Container(
          padding: const EdgeInsets.symmetric(vertical: 11),
@@ -182,29 +182,22 @@ _buildActionButtons(onAccept: () {
        ),
      ),
      if(orderEntiti.status=="delivered")
-     Container(
-         padding: const EdgeInsets.symmetric(vertical: 11),
-         decoration: BoxDecoration(
-           color: AppColors.lightPrimaryColor,
-           borderRadius: BorderRadius.circular(12),
-           border: Border.all(color: Colors.white.withOpacity(0.3)),
-         ),
-         child: Row(
+     Row(
            mainAxisAlignment: MainAxisAlignment.center,
            children: [
-             Icon(Icons.delivery_dining, size: 18, color: Colors.white),
-             const SizedBox(width: 6),
+             Icon(Icons.check, size: 24, color: Colors.black),
+             const SizedBox(width: 8),
              Text(
-               "Shipped",
+               "done",
                style: TextStyle(
-                 color: Colors.white,
-                 fontSize: 14,
+                 color: Colors.black,
+                 fontSize: 18,
                  fontWeight: FontWeight.w700,
                ),
              ),
            ],
          ),
-       ),
+       
     
     ],
 
